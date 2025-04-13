@@ -63,21 +63,9 @@ end
 # Authentication and Authorization
 gem 'devise'
 gem 'pundit'
-
-# File uploads
 gem 'image_processing', '~> 1.2'
-
-# Background jobs (for notifications, email)
 gem 'sidekiq'
-
-# Frontend
 gem 'hotwire-rails'
-
-# Pagination (optional, for listings)
 gem 'pagy'
-
-# Multilingual support
 gem 'rails-i18n'
-
-# Debugging
 gem 'pry-rails'
