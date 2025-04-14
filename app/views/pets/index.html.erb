@@ -3,6 +3,8 @@
 <h2 class="text-2xl font-semibold mb-6">Pets Available for Adoption</h2>
 
 <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+  <%= link_to "List a Pet", new_pet_path, class: "text-green-600 hover:underline inline-block mb-6" if user_signed_in? %>
+
   <% @pets.each do |pet| %>
     <div class="bg-white border rounded-lg shadow-sm p-4">
       <% if pet.photo.attached? %>
