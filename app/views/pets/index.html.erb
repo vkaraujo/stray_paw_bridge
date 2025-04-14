@@ -1,2 +1,25 @@
-<h1>Pets#index</h1>
-<p>Find me in app/views/pets/index.html.erb</p>
+<%= render "shared/flash" %>
+
+<h2 class="text-2xl font-semibold mb-6">Pets Available for Adoption</h2>
+
+<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+  <% @pets.each do |pet| %>
+    <div class="bg-white border rounded-lg shadow-sm p-4">
+      <% if pet.photo.attached? %>
+        <%= image_tag pet.photo.variant(resize_to_limit: [400, 300]), class: "mb-4 w-full h-48 object-cover rounded" %>
+      <% else %>
+        <div class="mb-4 w-full h-48 bg-gray-200 flex items-center justify-center rounded text-gray-500">
+          No Photo
+        </div>
+      <% end %>
+
+      <h3 class="text-lg font-bold mb-1"><%= pet.name %></h3>
+      <p class="text-sm text-gray-600 mb-2"><%= truncate(pet.description, length: 100) %></p>
+      <p class="text-sm text-gray-700">Species: <%= pet.species.titleize %></p>
+      <p class="text-sm text-gray-700">Size: <%= pet.size %></p>
+      <p class="text-sm text-gray-700">Status: <%= pet.status.titleize %></p>
+
+      <%= link_to "View", pet_path(pet), class: "inline-block mt-3 text-blue-600 hover:underline" %>
+    </div>
+  <% end %>
+</div>
