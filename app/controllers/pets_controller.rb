@@ -6,7 +6,10 @@ class PetsController < ApplicationController
   before_action :authorize_pet!, only: [:edit, :update, :destroy]
 
   def index
-    @pets = Pet.available.includes(photo_attachment: :blob)
+    @pets = Pet.available
+
+    @pets = @pets.where(species: params[:species]) if params[:species].present?
+    @pets = @pets.where(size: params[:size]) if params[:size].present?
   end
 
   def show
