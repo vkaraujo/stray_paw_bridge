@@ -3,4 +3,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   enum role: { user: 0, admin: 1, institutional: 2 }
+
+  has_many :adoption_requests, dependent: :destroy
 end
