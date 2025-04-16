@@ -9,7 +9,13 @@ class AdoptionRequest < ApplicationRecord
   private
 
   def no_duplicate_pending_requests
-    if AdoptionRequest.exists?(user_id: user_id, pet_id: pet_id, status: :pending)
+    return unless status == "pending"
+
+    if AdoptionRequest.where.not(id: id).exists?(
+         user_id: user_id,
+         pet_id: pet_id,
+         status: :pending
+       )
       errors.add(:base, "You already have a pending adoption request for this pet.")
     end
   end
