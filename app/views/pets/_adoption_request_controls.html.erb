@@ -1,0 +1,27 @@
+<% if request.present? %>
+  <div class="mt-4 text-sm">
+    <% if request.pending? %>
+      <p class="text-yellow-600 mb-2">You have a pending adoption request.</p>
+      <%= button_to "Cancel Request", cancel_adoption_request_path(request), method: :patch, class: "text-sm text-red-600 hover:underline" %>
+    <% elsif request.rejected? %>
+      <p class="text-red-600 mb-2">Your previous request was rejected.</p>
+      <%= button_to "Reapply", adoption_requests_path, method: :post, params: { adoption_request: { pet_id: pet.id } }, class: "text-sm text-blue-600 hover:underline" %>
+    <% elsif request.approved? %>
+      <p class="text-green-600">Your adoption request was approved! 🎉</p>
+    <% elsif request.cancelled? %>
+      <p class="text-gray-600 mb-2">You cancelled your previous request.</p>
+      <%= button_to "Reapply", adoption_requests_path, method: :post, params: { adoption_request: { pet_id: pet.id } }, class: "text-sm text-blue-600 hover:underline" %>
+    <% end %>
+  </div>
+<% else %>
+  <%= form_with url: adoption_requests_path, method: :post, local: true do |f| %>
+    <%= f.hidden_field :pet_id, value: pet.id %>
+
+    <div class="mb-2">
+      <%= f.label :message, "Message to the rescuer", class: "text-sm font-medium" %>
+      <%= f.text_area :message, rows: 3, class: "w-full p-2 border rounded-md mt-1" %>
+    </div>
+
+    <%= f.submit "Apply to Adopt", class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
+  <% end %>
+<% end %>
