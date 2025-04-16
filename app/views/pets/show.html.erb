@@ -1,24 +1,16 @@
 <div class="max-w-2xl mx-auto bg-white p-6 rounded-md shadow">
-  <% if @pet.photo.attached? %>
-    <%= image_tag @pet.photo.variant(resize_to_limit: [600, 400]), class: "mb-4 w-full h-64 object-cover rounded" %>
-  <% end %>
+  <%= render "pet_details", pet: @pet %>
 
-  <h2 class="text-2xl font-bold mb-2"><%= @pet.name %></h2>
-  <p class="text-gray-600 mb-2"><%= @pet.description %></p>
-
-  <div class="grid grid-cols-2 gap-4 text-sm text-gray-700 mb-4">
-    <p><strong>Species:</strong> <%= @pet.species.titleize %></p>
-    <p><strong>Size:</strong> <%= @pet.size %></p>
-    <p><strong>Status:</strong> <%= @pet.status.titleize %></p>
-    <% if @pet.age.present? %>
-      <p><strong>Age:</strong> <%= @pet.age %> years</p>
+  <% if user_signed_in? %>
+    <% if current_user == @pet.user || current_user.admin? %>
+      <%= render "incoming_requests", requests: @incoming_requests %>
+    <% else %>
+      <%= render "adoption_request_controls", pet: @pet, request: @adoption_request %>
     <% end %>
-  </div>
+  <% end %>
 
   <% if current_user == @pet.user || current_user.admin? %>
-    <div class="flex space-x-4">
-      <%= link_to "Edit", edit_pet_path(@pet), class: "text-blue-600 hover:underline" %>
-      <%= button_to "Delete", pet_path(@pet), method: :delete, data: { confirm: "Are you sure?" }, class: "text-red-600 hover:underline bg-transparent border-none p-0" %>
-    </div>
+    <%= render "owner_actions", pet: @pet %>
   <% end %>
 </div>
+

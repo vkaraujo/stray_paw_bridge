@@ -13,6 +13,8 @@ class PetsController < ApplicationController
   end
 
   def show
+    @adoption_request = current_user&.adoption_requests&.find_by(pet: @pet)
+    @incoming_requests = @pet.adoption_requests.includes(:user) if current_user == @pet.user || current_user&.admin?
   end
 
   def new
