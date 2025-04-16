@@ -4,7 +4,7 @@ class CreateAdoptionRequests < ActiveRecord::Migration[7.1]
       t.references :user, null: false, foreign_key: true
       t.references :pet, null: false, foreign_key: true
       t.text :message
-      t.integer :status
+      t.integer :status, default: 0, null: false
 
       t.timestamps
     end

@@ -46,7 +46,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_04_16_160313) do
     t.bigint "user_id", null: false
     t.bigint "pet_id", null: false
     t.text "message"
-    t.integer "status"
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["pet_id"], name: "index_adoption_requests_on_pet_id"

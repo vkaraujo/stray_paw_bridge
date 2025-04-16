@@ -20,6 +20,11 @@ user = User.find_or_create_by!(email: "sample@user.com") do |u|
   u.role = :user
 end
 
+User.find_or_create_by!(email: "adopter@user.com") do |a|
+  a.password = "password"
+  a.role = :user
+end
+
 3.times do |i|
   Pet.create!(
     name: "Buddy ##{i + 1}",
