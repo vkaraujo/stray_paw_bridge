@@ -10,6 +10,7 @@ class AdoptionRequestsController < ApplicationController
     if @request.save
       redirect_to pet_path(@request.pet), notice: "Adoption request sent!"
     else
+      logger.debug "FAILED REQUEST: #{@request.errors.full_messages.inspect}"
       redirect_to pet_path(@request.pet), alert: @request.errors.full_messages.to_sentence
     end
   end
