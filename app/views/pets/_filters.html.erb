@@ -1,0 +1,27 @@
+<%= form_with url: pets_path, method: :get, local: true, class: "mb-6 space-y-4" do %>
+  <div class="flex flex-wrap gap-4 items-end">
+    <div class="flex flex-col">
+      <%= label_tag :species, "Species", class: "text-sm font-medium text-gray-700" %>
+      <%= select_tag :species, options_for_select(Pet.species.keys.map { |s| [s.titleize, s] }, params[:species]),
+                     include_blank: "All",
+                     class: "p-2 border rounded-md" %>
+    </div>
+
+    <div class="flex flex-col">
+      <%= label_tag :size, "Size", class: "text-sm font-medium text-gray-700" %>
+      <%= select_tag :size, options_for_select(["Small", "Medium", "Large"], params[:size]),
+                     include_blank: "All",
+                     class: "p-2 border rounded-md" %>
+    </div>
+
+    <div class="flex flex-col">
+      <%= label_tag :location, "Location", class: "text-sm font-medium text-gray-700" %>
+      <%= text_field_tag :location, "", placeholder: "Coming soon...", disabled: true,
+                         class: "p-2 border rounded-md bg-gray-100 text-gray-400" %>
+    </div>
+
+    <div>
+      <%= submit_tag "Filter", class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
+    </div>
+  </div>
+<% end %>
