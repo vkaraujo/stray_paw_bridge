@@ -13,6 +13,8 @@ class PetsController < ApplicationController
   end
 
   def show
+    @adoption_request = latest_relevant_request
+    @incoming_requests = @pet.adoption_requests.includes(:user) if current_user == @pet.user || current_user&.admin?
   end
 
   def new
@@ -45,6 +47,14 @@ class PetsController < ApplicationController
   end
 
   private
+
+  def latest_relevant_request
+    return nil unless current_user
+
+    requests = current_user.adoption_requests.where(pet: @pet).order(created_at: :desc)
+
+    requests.find(&:pending?) || requests.first
+  end
 
   def set_pet
     @pet = Pet.find(params[:id])

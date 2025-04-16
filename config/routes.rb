@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :adoption_requests, only: [:create] do
+    member do
+      patch :approve
+      patch :reject
+      patch :cancel
+    end
+  end
+
   resources :pets, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   devise_for :users
   root 'home#index'

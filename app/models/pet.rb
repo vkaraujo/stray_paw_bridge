@@ -8,4 +8,6 @@ class Pet < ApplicationRecord
   enum species: { dog: 0, cat: 1 }
 
   validates :name, :species, :size, :status, presence: true
+
+  has_many :adoption_requests, dependent: :destroy
 end
