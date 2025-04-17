@@ -1,12 +1,14 @@
 <header class="bg-white shadow mb-6">
-  <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+  <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+    <!-- Left: Logo -->
     <h1 class="text-xl font-bold">
       <%= link_to "StrayPawBridge", root_path, class: "hover:underline" %>
     </h1>
 
-    <nav class="space-x-4">
+    <!-- Middle: Nav links -->
+    <nav class="space-x-4 flex items-center">
       <%= link_to "Adopt", pets_path, class: "text-blue-600 hover:underline" %>
-      
+
       <% if user_signed_in? && current_user.admin? %>
         <%= link_to "Admin", admin_dashboard_path, class: "text-sm text-red-600 hover:underline" %>
       <% end %>
@@ -23,9 +25,9 @@
           <% end %>
         <% end %>
       <% end %>
-      
+
       <% if user_signed_in? %>
-        <span>Welcome, <%= current_user.email %>!</span>
+        <span class="text-sm">Welcome, <%= current_user.email %>!</span>
         <%= link_to 'Edit Profile', edit_user_registration_path, class: "text-blue-600 hover:underline" %>
         <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "text-red-600 hover:underline" %>
       <% else %>
@@ -33,5 +35,15 @@
         <%= link_to 'Log in', new_user_session_path, class: "text-blue-600 hover:underline" %>
       <% end %>
     </nav>
+
+    <!-- Right: Language Switcher -->
+    <div>
+      <%= form_with url: request.path, method: :get, local: true do %>
+        <select name="locale" onchange="this.form.submit()" class="p-2 border rounded text-sm">
+          <option value="pt-BR" <%= 'selected' if I18n.locale.to_s == 'pt-BR' %>>🇧🇷 PT</option>
+          <option value="en" <%= 'selected' if I18n.locale == :en %>>🇺🇸 EN</option>
+        </select>
+      <% end %>
+    </div>
   </div>
 </header>

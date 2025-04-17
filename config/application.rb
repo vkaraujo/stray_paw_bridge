@@ -44,5 +44,8 @@ module StrayPawBridge
     # Custom
     config.action_mailer.preview_path = "#{Rails.root}/spec/mailers/previews"
     config.active_job.queue_adapter = :sidekiq
+    config.i18n.available_locales = [:en, :'pt-BR']
+    config.i18n.default_locale = :'pt-BR'
+    config.i18n.fallbacks = [:en]
   end
 end
