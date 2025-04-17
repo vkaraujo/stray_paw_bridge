@@ -2,7 +2,13 @@
 
 Rails.application.routes.draw do
   namespace :admin do
-    resources :users, only: [:index]
+    resources :users, only: [:index] do
+      member do
+        patch :toggle_admin
+        patch :toggle_active
+      end
+    end
+
     get "/", to: "dashboard#index", as: :dashboard
   end
 

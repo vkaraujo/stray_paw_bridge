@@ -1,6 +1,26 @@
 <div class="max-w-5xl mx-auto p-6">
   <h1 class="text-2xl font-bold mb-6">User Management</h1>
 
+  <%= form_with url: admin_users_path, method: :get, local: true, class: "mb-6 flex gap-4 items-end" do %>
+    <div class="flex flex-col">
+      <%= label_tag :role, "Role", class: "text-sm font-medium" %>
+      <%= select_tag :role,
+            options_for_select([["All", ""]] + User.roles.keys.map { |r| [r.titleize, r] }, params[:role]),
+            class: "border rounded p-1" %>
+    </div>
+
+    <div class="flex flex-col">
+      <%= label_tag :active, "Status", class: "text-sm font-medium" %>
+      <%= select_tag :active,
+            options_for_select([["All", ""], ["Active", "true"], ["Inactive", "false"]], params[:active]),
+            class: "border rounded p-1" %>
+    </div>
+
+    <div>
+      <%= submit_tag "Filter", class: "bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700" %>
+    </div>
+  <% end %>
+
   <table class="w-full table-auto border-collapse">
     <thead>
       <tr class="bg-gray-100 text-left">
@@ -8,6 +28,7 @@
         <th class="p-2 border">Email</th>
         <th class="p-2 border">Role</th>
         <th class="p-2 border">Created At</th>
+        <th class="p-2 border">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -17,6 +38,10 @@
           <td class="p-2 border"><%= user.email %></td>
           <td class="p-2 border capitalize"><%= user.role %></td>
           <td class="p-2 border text-sm text-gray-600"><%= user.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+          <td class="p-2 border space-x-2">
+            <%= button_to "Toggle Admin", toggle_admin_admin_user_path(user), method: :patch, class: "text-xs text-blue-600 hover:underline" %>
+            <%= button_to (user.active? ? "Deactivate" : "Reactivate"), toggle_active_admin_user_path(user), method: :patch, class: "text-xs text-red-600 hover:underline" %>
+          </td>
         </tr>
       <% end %>
     </tbody>
