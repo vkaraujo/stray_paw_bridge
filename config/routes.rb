@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :pets, only: [:index] do
       member do
-        patch :toggle_status
+        patch :toggle_visibility
       end
     end
 

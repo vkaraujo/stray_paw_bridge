@@ -5,14 +5,9 @@ class Admin::PetsController < Admin::BaseController
     @pets = Pet.includes(:user).order(created_at: :desc)
   end
 
-  def toggle_status
+  def toggle_visibility
     @pet = Pet.find(params[:id])
-    if @pet.available?
-      @pet.adopted!
-    else
-      @pet.available!
-    end
-
-    redirect_to admin_pets_path, notice: "Toggled status for #{@pet.name}."
+    @pet.update(visible: !@pet.visible)
+    redirect_to admin_pets_path, notice: "#{@pet.name} is now #{ @pet.visible? ? 'visible' : 'hidden' }."
   end
 end
