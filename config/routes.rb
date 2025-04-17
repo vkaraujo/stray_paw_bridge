@@ -2,8 +2,9 @@
 
 Rails.application.routes.draw do
   namespace :admin do
+    resources :users, only: [:index]
     get "/", to: "dashboard#index", as: :dashboard
-  end  
+  end
 
   resources :notifications, only: [] do
     member do
