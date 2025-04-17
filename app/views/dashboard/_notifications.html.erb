@@ -1,0 +1,15 @@
+<div>
+  <h2 class="text-xl font-semibold mb-4">Notifications</h2>
+
+  <% if notifications.any? %>
+    <ul class="space-y-2">
+      <% notifications.each do |note| %>
+        <li class="p-3 bg-<%= note.read? ? 'gray-100' : 'yellow-50' %> border rounded">
+          <p class="text-sm text-gray-800"><%= note.message %></p>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="text-gray-500">You don’t have any notifications yet.</p>
+  <% end %>
+</div>
