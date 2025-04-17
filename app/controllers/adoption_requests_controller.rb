@@ -24,6 +24,9 @@ class AdoptionRequestsController < ApplicationController
     authorize_owner!
     if @request.update(status: :approved)
       Notification.create!(user: @request.user, message: "Your adoption request for #{@request.pet.name} was approved.")
+
+      NotificationMailer.adoption_approved(@request.user, @request.pet).deliver_later
+
       redirect_to pet_path(@request.pet), notice: "Request approved."
     else
       redirect_to pet_path(@request.pet), alert: "Could not approve request."
@@ -34,6 +37,9 @@ class AdoptionRequestsController < ApplicationController
     authorize_owner!
     if @request.update(status: :rejected)
       Notification.create!(user: @request.user, message: "Your adoption request for #{@request.pet.name} was rejected.")
+
+      NotificationMailer.adoption_rejected(@request.user, @request.pet).deliver_later
+
       redirect_to pet_path(@request.pet), notice: "Request rejected."
     else
       redirect_to pet_path(@request.pet), alert: "Could not reject request."
