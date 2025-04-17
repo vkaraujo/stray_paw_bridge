@@ -2,6 +2,12 @@
 
 Rails.application.routes.draw do
   namespace :admin do
+    resources :pets, only: [:index] do
+      member do
+        patch :toggle_status
+      end
+    end
+
     resources :users, only: [:index] do
       member do
         patch :toggle_admin
