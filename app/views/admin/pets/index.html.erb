@@ -9,20 +9,35 @@
         <th class="p-2 border">Size</th>
         <th class="p-2 border">Status</th>
         <th class="p-2 border">Owner</th>
+        <th class="p-2 border">Visibility</th>
         <th class="p-2 border">Actions</th>
       </tr>
     </thead>
     <tbody>
       <% @pets.each do |pet| %>
-        <tr>
+        <tr class="<%= pet.visible? ? '' : 'bg-gray-100 text-gray-500' %>">
           <td class="p-2 border font-semibold"><%= pet.name %></td>
           <td class="p-2 border"><%= pet.species.titleize %></td>
           <td class="p-2 border"><%= pet.size %></td>
           <td class="p-2 border capitalize"><%= pet.status %></td>
           <td class="p-2 border text-sm"><%= pet.user.email %></td>
           <td class="p-2 border">
-            <%= button_to "Toggle Status", toggle_status_admin_pet_path(pet), method: :patch,
-                  class: "text-sm text-blue-600 hover:underline" %>
+            <% if pet.visible? %>
+              <span class="text-green-600 font-semibold">Visible</span>
+            <% else %>
+              <span class="text-red-600 font-semibold">Hidden</span>
+            <% end %>
+          </td>
+          <td class="p-2 border">
+            <%= form_with url: toggle_visibility_admin_pet_path(pet), method: :patch, local: true do %>
+              <button type="submit" aria-label="Toggle visibility" class="relative inline-flex items-center h-6 w-11 rounded-full transition-colors focus:outline-none
+                <%= pet.visible? ? 'bg-green-500' : 'bg-gray-300' %>">
+                <span class="sr-only">Toggle Visibility</span>
+                <span class="inline-block h-4 w-4 transform bg-white rounded-full transition-transform duration-200 ease-in-out
+                  <%= pet.visible? ? 'translate-x-6' : 'translate-x-1' %>">
+                </span>
+              </button>
+            <% end %>
           </td>
         </tr>
       <% end %>
