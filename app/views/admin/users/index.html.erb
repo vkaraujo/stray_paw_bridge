@@ -28,7 +28,8 @@
         <th class="p-2 border">Email</th>
         <th class="p-2 border">Role</th>
         <th class="p-2 border">Created At</th>
-        <th class="p-2 border">Actions</th>
+        <th class="p-2 border">Admin</th>
+        <th class="p-2 border">Active</th>
       </tr>
     </thead>
     <tbody>
@@ -38,9 +39,31 @@
           <td class="p-2 border"><%= user.email %></td>
           <td class="p-2 border capitalize"><%= user.role %></td>
           <td class="p-2 border text-sm text-gray-600"><%= user.created_at.strftime("%Y-%m-%d %H:%M") %></td>
-          <td class="p-2 border space-x-2">
-            <%= button_to "Toggle Admin", toggle_admin_admin_user_path(user), method: :patch, class: "text-xs text-blue-600 hover:underline" %>
-            <%= button_to (user.active? ? "Deactivate" : "Reactivate"), toggle_active_admin_user_path(user), method: :patch, class: "text-xs text-red-600 hover:underline" %>
+          
+          <!-- Admin toggle -->
+          <td class="p-2 border">
+            <%= form_with url: toggle_admin_admin_user_path(user), method: :patch, local: true do %>
+              <button type="submit" aria-label="Toggle admin role" class="relative inline-flex items-center h-6 w-11 rounded-full transition-colors focus:outline-none
+                <%= user.admin? ? 'bg-yellow-500' : 'bg-gray-300' %>">
+                <span class="sr-only">Toggle Admin Role</span>
+                <span class="inline-block h-4 w-4 transform bg-white rounded-full transition-transform duration-200 ease-in-out
+                  <%= user.admin? ? 'translate-x-6' : 'translate-x-1' %>">
+                </span>
+              </button>
+            <% end %>
+          </td>
+
+          <!-- Active toggle -->
+          <td class="p-2 border">
+            <%= form_with url: toggle_active_admin_user_path(user), method: :patch, local: true do %>
+              <button type="submit" aria-label="Toggle user active status" class="relative inline-flex items-center h-6 w-11 rounded-full transition-colors focus:outline-none
+                <%= user.active? ? 'bg-green-500' : 'bg-red-500' %>">
+                <span class="sr-only">Toggle Active Status</span>
+                <span class="inline-block h-4 w-4 transform bg-white rounded-full transition-transform duration-200 ease-in-out
+                  <%= user.active? ? 'translate-x-6' : 'translate-x-1' %>">
+                </span>
+              </button>
+            <% end %>
           </td>
         </tr>
       <% end %>
