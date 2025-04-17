@@ -2,4 +2,7 @@
 :queues:
   - [mailers, 2]
   - [default, 1]
+
+:redis:
+  :url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/0" } %>
   
