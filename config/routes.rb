@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  namespace :admin do
+    get "/", to: "dashboard#index", as: :dashboard
+  end  
+
   resources :notifications, only: [] do
     member do
       patch :mark_as_read
