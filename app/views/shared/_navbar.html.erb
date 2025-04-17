@@ -6,7 +6,19 @@
 
     <nav class="space-x-4">
       <%= link_to "Adopt", pets_path, class: "text-blue-600 hover:underline" %>
-      <%= link_to "Dashboard", dashboard_path, class: "text-sm text-blue-600 hover:underline" if user_signed_in? %>
+      
+      <% if user_signed_in? %>
+        <% unread_count = current_user.notifications.unread.count %>
+        <%= link_to dashboard_path, class: "relative inline-block" do %>
+          <span class="text-sm text-blue-600 hover:underline">Dashboard</span>
+
+          <% if unread_count > 0 %>
+            <span class="absolute -top-1 -right-2 text-xs bg-red-600 text-white rounded-full px-1">
+              <%= unread_count %>
+            </span>
+          <% end %>
+        <% end %>
+      <% end %>
       
       <% if user_signed_in? %>
         <span>Welcome, <%= current_user.email %>!</span>
