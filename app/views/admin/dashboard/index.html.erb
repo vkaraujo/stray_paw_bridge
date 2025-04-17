@@ -2,7 +2,11 @@
   <h1 class="text-2xl font-bold mb-6">Admin Panel</h1>
 
   <ul class="space-y-3">
-    <li><%= link_to "Manage Users", "#" %></li>
-    <li><%= link_to "Moderate Pet Listings", "#" %></li>
+    <li>
+      <%= link_to "Manage Users", admin_users_path, class: "text-blue-600 hover:underline" %>
+    </li>
+    <li>
+      <%= link_to "Moderate Pet Listings", admin_pets_path, class: "text-blue-600 hover:underline" %>
+    </li>
   </ul>
 </div>
