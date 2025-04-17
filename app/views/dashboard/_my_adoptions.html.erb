@@ -1,0 +1,41 @@
+<div>
+  <h2 class="text-xl font-semibold mb-4">My Adoptions</h2>
+
+  <% if requests.any? %>
+    <ul class="space-y-4">
+      <% requests.each do |request| %>
+        <li class="border rounded p-4 bg-white shadow-sm">
+          <div class="flex justify-between items-center">
+            <div>
+              <h3 class="text-lg font-bold">
+                <%= link_to request.pet.name, pet_path(request.pet), class: "text-blue-600 hover:underline" %>
+              </h3>
+              <p class="text-sm text-gray-600">
+                Status:
+                <% status_class = {
+                     "pending" => "text-yellow-600",
+                     "approved" => "text-green-600",
+                     "rejected" => "text-red-600",
+                     "cancelled" => "text-gray-500"
+                   }[request.status] %>
+                <span class="<%= status_class %> font-semibold"><%= request.status.titleize %></span>
+              </p>
+              <% if request.message.present? %>
+                <p class="text-gray-500 text-sm mt-1 italic">"<%= request.message %>"</p>
+              <% end %>
+            </div>
+
+            <% if request.pending? %>
+              <div>
+                <%= button_to "Cancel", cancel_adoption_request_path(request), method: :patch,
+                      class: "text-red-600 hover:underline text-sm" %>
+              </div>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="text-gray-500">You haven't submitted any adoption requests yet.</p>
+  <% end %>
+</div>
