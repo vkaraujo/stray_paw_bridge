@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get "/dashboard", to: "dashboard#index", as: :dashboard
+
   resources :adoption_requests, only: [:create] do
     member do
       patch :approve
