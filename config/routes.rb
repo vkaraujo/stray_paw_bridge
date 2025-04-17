@@ -1,6 +1,23 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :pets, only: [:index] do
+      member do
+        patch :toggle_visibility
+      end
+    end
+
+    resources :users, only: [:index] do
+      member do
+        patch :toggle_admin
+        patch :toggle_active
+      end
+    end
+
+    get "/", to: "dashboard#index", as: :dashboard
+  end
+
   resources :notifications, only: [] do
     member do
       patch :mark_as_read
