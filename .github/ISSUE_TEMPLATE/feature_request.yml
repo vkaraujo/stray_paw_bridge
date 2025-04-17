@@ -1,0 +1,30 @@
+name: Feature Request
+description: Suggest a new feature or improvement
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for contributing to StrayPawBridge! ✨  
+        Please describe the feature or improvement you'd like to see.
+  - type: input
+    id: goal
+    attributes:
+      label: What do you want to achieve?
+      placeholder: "e.g. Let guests search pets by location"
+  - type: textarea
+    id: details
+    attributes:
+      label: Feature Details
+      description: Describe how it might work, any technical notes, or references to existing parts of the app.
+      placeholder: |
+        e.g. Add filters to pets#index. Use address geolocation from map API.
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - Low
+        - Medium
+        - High

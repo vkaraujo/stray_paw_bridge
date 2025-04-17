@@ -7,10 +7,11 @@
     <% else %>
       <%= render "adoption_request_controls", pet: @pet, request: @adoption_request %>
     <% end %>
-  <% end %>
 
-  <% if current_user == @pet.user || current_user.admin? %>
-    <%= render "owner_actions", pet: @pet %>
+    <% if current_user == @pet.user || current_user.admin? %>
+      <%= render "owner_actions", pet: @pet %>
+    <% end %>
   <% end %>
 </div>
+
 
