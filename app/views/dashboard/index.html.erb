@@ -1,0 +1,7 @@
+<div class="max-w-5xl mx-auto py-8 space-y-8">
+  <h1 class="text-2xl font-bold mb-6">My Dashboard</h1>
+
+  <%= render "dashboard/my_pets", pets: @my_pets %>
+  <%= render "dashboard/my_adoptions", requests: @my_adoption_requests %>
+  <%= render "dashboard/notifications", notifications: @notifications %>
+</div>
