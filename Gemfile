@@ -70,3 +70,6 @@ gem 'hotwire-rails'
 gem 'pagy'
 gem 'rails-i18n'
 gem 'pry-rails'
+gem "cloudinary"
+gem "activestorage-cloudinary-service"
+
