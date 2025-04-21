@@ -1,12 +1,37 @@
-<div class="max-w-4xl mx-auto p-8">
-  <h1 class="text-2xl font-bold mb-6">Admin Panel</h1>
+<div class="max-w-7xl mx-auto px-6 py-16 text-center">
+  <h1 class="text-5xl font-extrabold text-gray-800 mb-14">
+    <%= t("admin.dashboard.title") %>
+  </h1>
 
-  <ul class="space-y-3">
-    <li>
-      <%= link_to "Manage Users", admin_users_path, class: "text-blue-600 hover:underline" %>
-    </li>
-    <li>
-      <%= link_to "Moderate Pet Listings", admin_pets_path, class: "text-blue-600 hover:underline" %>
-    </li>
-  </ul>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+    <!-- Manage Users -->
+    <%= link_to admin_users_path, class: "block group" do %>
+      <div class="bg-white rounded-2xl shadow-xl overflow-hidden transition-transform transform group-hover:scale-105">
+        <img src="https://plus.unsplash.com/premium_vector-1682302934485-6d593c4020c3?w=1000&auto=format&fit=crop&q=60" alt="Manage Users" class="w-full h-[360px] object-cover" />
+        <div class="p-6">
+          <h2 class="text-2xl font-semibold text-gray-800 group-hover:text-blue-600 transition">
+            <%= t("admin.dashboard.manage_users") %>
+          </h2>
+          <p class="text-base text-gray-600 mt-2">
+            <%= t("admin.dashboard.manage_users_hint") %>
+          </p>
+        </div>
+      </div>
+    <% end %>
+
+    <!-- Moderate Pets -->
+    <%= link_to admin_pets_path, class: "block group" do %>
+      <div class="bg-white rounded-2xl shadow-xl overflow-hidden transition-transform transform group-hover:scale-105">
+        <img src="https://plus.unsplash.com/premium_vector-1730985779029-29db7e4ef3eb?w=1000&auto=format&fit=crop&q=60" alt="Moderate Pets" class="w-full h-[360px] object-cover" />
+        <div class="p-6">
+          <h2 class="text-2xl font-semibold text-gray-800 group-hover:text-blue-600 transition">
+            <%= t("admin.dashboard.moderate_pets") %>
+          </h2>
+          <p class="text-base text-gray-600 mt-2">
+            <%= t("admin.dashboard.moderate_pets_hint") %>
+          </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

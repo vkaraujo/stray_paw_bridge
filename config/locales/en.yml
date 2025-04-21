@@ -25,4 +25,133 @@ en:
     logout: "Log out"
     signup: "Sign up"
     login: "Log in"
+  pets:
+    index:
+      title: "Pets Available for Adoption"
+      list_pet: "List a Pet"
+      none_found: "No pets found matching your filters."
+      no_photo: "No Photo"
+      species: "Species"
+      size: "Size"
+      status: "Status"
+      view_button: "View Details"
+    filters:
+      species: "Species"
+      size: "Size"
+      location: "Near Location"
+      location_placeholder: "e.g. São Paulo, Brazil"
+      radius: "Radius (km)"
+      submit: "Filter"
+      all: "All"
+    form:
+      title: "List a Rescued Pet"
+      name: "Name"
+      description: "Description"
+      species: "Species"
+      status: "Status"
+      age: "Age"
+      size: "Size"
+      address: "Location (e.g. São Paulo, Brazil)"
+      photo: "Photo"
+      submit: "Publish Pet"
+      edit_title: "Edit Pet"
+      update: "Update Pet"
+    show:
+      title: "Pet Profile"
+    attributes:
+      species: "Species"
+      size: "Size"
+      status: "Status"
+      age: "Age"
+      years: "years"
+      location: "Location"
+    requests:
+      title: "Adoption Requests"
+      no_message: "No message"
+      status: "Status"
+      approve: "Approve"
+      reject: "Reject"
+    owner_actions:
+      edit: "Edit"
+      delete: "Delete"
+      confirm: "Are you sure you want to delete this pet?"
+  adoption_request:
+    pending: "You have a pending adoption request."
+    approved: "Your adoption request was approved! 🎉"
+    previous_status: "Your previous request was %{status}."
+    message_label: "Message to the rescuer"
+    apply: "Apply to Adopt"
+    reapply: "Reapply"
+    cancel: "Cancel Request"
+  mailer:
+    approved:
+      title: "Good News!"
+      body_html: "Your adoption request for <strong>%{pet_name}</strong> has been approved by the rescuer!"
+      instructions: "Be sure to check your dashboard for the next steps and get in touch to schedule a visit or finalize the adoption."
+    signature: "The StrayPawBridge Team"
+    rejected:
+      title: "Sorry!"
+      body_html: "Your adoption request for <strong>%{pet_name}</strong> was not approved."
+      encouragement: "But don't give up! There are still many amazing pets looking for a loving home. You can check out the listings anytime and apply again."
+  dashboard:
+    title: "My Dashboard"
+    my_pets:
+      title: "My Pets"
+      view: "View"
+      edit: "Edit"
+      add: "Add New Pet"
+      none: "You haven't listed any pets yet."
+    my_adoptions:
+      title: "My Adoptions"
+      pending_title: "Pending Requests"
+      pending_status: "Pending"
+      cancel: "Cancel"
+      past_title: "Past Requests"
+      statuses:
+        approved: "Approved"
+        rejected: "Rejected"
+        cancelled: "Cancelled"
+      none: "You haven't submitted any adoption requests yet."
+    notifications:
+      title: "Notifications"
+      mark_as_read: "Mark as Read"
+      none: "You don’t have any notifications yet."
+  admin:
+    dashboard:
+      title: "Admin Panel"
+      manage_users: "Manage Users"
+      manage_users_hint: "View, promote, or deactivate platform users."
+      moderate_pets: "Moderate Pet Listings"
+      moderate_pets_hint: "Review, approve, or hide pet submissions."
+    pets:
+      title: "Pet Listing Moderation"
+      name: "Name"
+      species: "Species"
+      size: "Size"
+      status: "Status"
+      owner: "Owner"
+      visibility: "Visibility"
+      actions: "Actions"
+      visible: "Visible"
+      hidden: "Hidden"
+      toggle_visibility: "Toggle Visibility"
+    users:
+      title: "User Management"
+      id: "ID"
+      email: "Email"
+      role: "Role"
+      created_at: "Created At"
+      admin_toggle: "Admin"
+      active_toggle: "Active"
+      toggle_admin_aria: "Toggle Admin Role"
+      toggle_active_aria: "Toggle Active Status"
+      filters:
+        role: "Role"
+        status: "Status"
+        all: "All"
+        active: "Active"
+        inactive: "Inactive"
+        submit: "Filter"
+
+
 

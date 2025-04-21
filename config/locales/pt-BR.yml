@@ -167,3 +167,134 @@ pt-BR:
     logout: "Sair"
     signup: "Cadastrar"
     login: "Entrar"
+  pets:
+    index:
+      title: "Animais disponíveis para adoção"
+      list_pet: "Cadastrar um animal"
+      none_found: "Nenhum animal encontrado com os filtros selecionados."
+      no_photo: "Sem foto"
+      species: "Espécie"
+      size: "Porte"
+      status: "Status"
+      view_button: "Ver detalhes"
+    filters:
+      species: "Espécie"
+      size: "Porte"
+      location: "Próximo a"
+      location_placeholder: "ex: São Paulo, Brasil"
+      radius: "Raio (km)"
+      submit: "Filtrar"
+      all: "Todos"
+    form:
+      title: "Cadastrar um Animal Resgatado"
+      name: "Nome"
+      description: "Descrição"
+      species: "Espécie"
+      status: "Status"
+      age: "Idade"
+      size: "Porte"
+      address: "Localização (ex: São Paulo, Brasil)"
+      photo: "Foto"
+      submit: "Publicar Animal"
+      edit_title: "Editar Animal"
+      update: "Atualizar Animal"
+    show:
+      title: "Perfil do Animal"
+    attributes:
+      species: "Espécie"
+      size: "Porte"
+      status: "Status"
+      age: "Idade"
+      years: "anos"
+      location: "Localização"
+    requests:
+      title: "Solicitações de Adoção"
+      no_message: "Sem mensagem"
+      status: "Status"
+      approve: "Aprovar"
+      reject: "Rejeitar"
+    owner_actions:
+      edit: "Editar"
+      delete: "Excluir"
+      confirm: "Tem certeza que deseja excluir este pet?"
+  adoption_request:
+    pending: "Você tem um pedido de adoção pendente."
+    approved: "Seu pedido de adoção foi aprovado! 🎉"
+    previous_status: "Seu pedido anterior foi %{status}."
+    message_label: "Mensagem para o responsável"
+    apply: "Candidatar-se para Adotar"
+    reapply: "Reenviar Pedido"
+    cancel: "Cancelar Pedido"
+  mailer:
+    approved:
+      title: "Boas Notícias!"
+      body_html: "Seu pedido de adoção para <strong>%{pet_name}</strong> foi aprovado pelo responsável!"
+      instructions: "Acesse seu painel para saber os próximos passos e entre em contato para agendar uma visita ou finalizar a adoção."
+    signature: "Equipe StrayPawBridge"
+    rejected:
+      title: "Que pena!"
+      body_html: "Seu pedido de adoção para <strong>%{pet_name}</strong> não foi aprovado."
+      encouragement: "Mas não desista! Ainda há muitos pets incríveis procurando um lar amoroso. Você pode conferir as listagens a qualquer momento e tentar novamente."
+  dashboard:
+    title: "Meu Painel"
+    my_pets:
+      title: "Meus Pets"
+      view: "Ver"
+      edit: "Editar"
+      add: "Adicionar Novo Pet"
+      none: "Você ainda não cadastrou nenhum pet."
+    my_adoptions:
+      title: "Minhas Adoções"
+      pending_title: "Solicitações Pendentes"
+      pending_status: "Pendente"
+      cancel: "Cancelar"
+      past_title: "Solicitações Passadas"
+      statuses:
+        approved: "Aprovada"
+        rejected: "Recusada"
+        cancelled: "Cancelada"
+      none: "Você ainda não enviou nenhuma solicitação de adoção."
+    notifications:
+      title: "Notificações"
+      mark_as_read: "Marcar como lida"
+      none: "Você ainda não tem notificações."
+  admin:
+    dashboard:
+      title: "Painel Administrativo"
+      manage_users: "Gerenciar Usuários"
+      manage_users_hint: "Visualize, promova ou desative usuários da plataforma."
+      moderate_pets: "Moderar Adoções"
+      moderate_pets_hint: "Revise, aprove ou oculte anúncios de pets."
+    pets:
+      title: "Moderação de Listagens de Pets"
+      name: "Nome"
+      species: "Espécie"
+      size: "Porte"
+      status: "Status"
+      owner: "Responsável"
+      visibility: "Visibilidade"
+      actions: "Ações"
+      visible: "Visível"
+      hidden: "Oculto"
+      toggle_visibility: "Alternar Visibilidade"
+    users:
+      title: "Gerenciamento de Usuários"
+      id: "ID"
+      email: "E-mail"
+      role: "Papel"
+      created_at: "Criado em"
+      admin_toggle: "Admin"
+      active_toggle: "Ativo"
+      toggle_admin_aria: "Alternar Papel de Admin"
+      toggle_active_aria: "Alternar Status de Ativação"
+      filters:
+        role: "Papel"
+        status: "Status"
+        all: "Todos"
+        active: "Ativos"
+        inactive: "Inativos"
+        submit: "Filtrar"
+
+
+
+
