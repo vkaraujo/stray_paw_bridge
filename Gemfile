@@ -72,4 +72,4 @@ gem 'rails-i18n'
 gem 'pry-rails'
 gem "cloudinary"
 gem "activestorage-cloudinary-service"
-
+gem 'geocoder'

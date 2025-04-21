@@ -10,4 +10,7 @@ class Pet < ApplicationRecord
   validates :name, :species, :size, :status, presence: true
 
   has_many :adoption_requests, dependent: :destroy
+
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
 end
