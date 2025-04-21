@@ -10,6 +10,11 @@ class PetsController < ApplicationController
 
     @pets = @pets.where(species: params[:species]) if params[:species].present?
     @pets = @pets.where(size: params[:size]) if params[:size].present?
+
+    if params[:location].present?
+      radius = params[:radius].presence || 20
+      @pets = @pets.near(params[:location], radius, units: :km)
+    end
   end
 
   def show
@@ -65,6 +70,6 @@ class PetsController < ApplicationController
   end
 
   def pet_params
-    params.require(:pet).permit(:name, :description, :species, :age, :size, :status, :photo)
+    params.require(:pet).permit(:name, :description, :species, :age, :size, :status, :photo, :address)
   end
 end

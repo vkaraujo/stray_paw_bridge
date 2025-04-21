@@ -9,7 +9,28 @@
   <p><strong>Species:</strong> <%= pet.species.titleize %></p>
   <p><strong>Size:</strong> <%= pet.size %></p>
   <p><strong>Status:</strong> <%= pet.status.titleize %></p>
+  
   <% if pet.age.present? %>
     <p><strong>Age:</strong> <%= pet.age %> years</p>
+  <% end %>
+
+  <% if @pet.latitude.present? && @pet.longitude.present? %>
+    <div class="mt-6">
+      <h3 class="text-md font-semibold mb-2">Location</h3>
+      <div id="map" class="w-full h-64 rounded-md shadow"></div>
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const map = L.map('map').setView([<%= @pet.latitude %>, <%= @pet.longitude %>], 13);
+
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          }).addTo(map);
+
+          L.marker([<%= @pet.latitude %>, <%= @pet.longitude %>]).addTo(map)
+            .bindPopup('<strong><%= j @pet.name %></strong><br><%= j @pet.address %>');
+        });
+      </script>
+    </div>
   <% end %>
 </div>
