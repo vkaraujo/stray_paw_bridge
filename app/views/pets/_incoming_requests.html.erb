@@ -1,16 +1,21 @@
 <% if requests.any? %>
   <div class="mt-6">
-    <h3 class="text-lg font-semibold mb-2">Adoption Requests</h3>
+    <h3 class="text-lg font-semibold mb-2 text-gray-800"><%= t("requests.title") %></h3>
     <ul class="space-y-2">
       <% requests.each do |request| %>
         <li class="border p-3 rounded-md bg-gray-50">
-          <p><strong><%= request.user.email %></strong>: <%= request.message.presence || "No message" %></p>
-          <p>Status: <%= request.status.titleize %></p>
+          <p>
+            <strong><%= request.user.email %></strong>: 
+            <%= request.message.presence || t("requests.no_message") %>
+          </p>
+          <p><%= t("requests.status") %>: <%= request.status.titleize %></p>
 
           <% if request.pending? %>
             <div class="mt-2 space-x-2">
-              <%= button_to "Approve", approve_adoption_request_path(request), method: :patch, class: "bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700" %>
-              <%= button_to "Reject", reject_adoption_request_path(request), method: :patch, class: "bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700" %>
+              <%= button_to t("requests.approve"), approve_adoption_request_path(request), method: :patch,
+                  class: "bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700" %>
+              <%= button_to t("requests.reject"), reject_adoption_request_path(request), method: :patch,
+                  class: "bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700" %>
             </div>
           <% end %>
         </li>

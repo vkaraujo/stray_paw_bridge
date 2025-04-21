@@ -1,26 +1,30 @@
 <% if request.present? %>
-  <div class="mt-4 text-sm">
+  <div class="mt-4 text-sm space-y-4">
     <% if request.pending? %>
-      <p class="text-yellow-600 mb-2">You have a pending adoption request.</p>
-      <%= button_to "Cancel Request", cancel_adoption_request_path(request), method: :patch, class: "text-sm text-red-600 hover:underline" %>
+      <p class="text-yellow-600"><%= t("adoption_request.pending") %></p>
+      <%= button_to t("adoption_request.cancel"),
+                    cancel_adoption_request_path(request),
+                    method: :patch,
+                    class: "text-red-600 hover:underline font-medium" %>
 
     <% elsif request.approved? %>
-      <p class="text-green-600">Your adoption request was approved! 🎉</p>
+      <p class="text-green-600"><%= t("adoption_request.approved") %></p>
 
     <% elsif request.rejected? || request.cancelled? %>
-      <p class="text-gray-600 mb-2">
-        Your previous request was <%= request.status %>.
+      <p class="text-gray-600">
+        <%= t("adoption_request.previous_status", status: request.status.titleize) %>
       </p>
 
       <%= form_with model: AdoptionRequest.new, url: adoption_requests_path, local: true do |f| %>
         <%= f.hidden_field :pet_id, value: pet.id %>
 
         <div class="mb-2">
-          <%= f.label :message, "Message to the rescuer", class: "text-sm font-medium" %>
+          <%= f.label :message, t("adoption_request.message_label"), class: "text-sm font-medium" %>
           <%= f.text_area :message, rows: 3, class: "w-full p-2 border rounded-md mt-1" %>
         </div>
 
-        <%= f.submit "Reapply", class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
+        <%= f.submit t("adoption_request.reapply"),
+              class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
       <% end %>
     <% end %>
   </div>
@@ -29,10 +33,11 @@
     <%= f.hidden_field :pet_id, value: pet.id %>
 
     <div class="mb-2">
-      <%= f.label :message, "Message to the rescuer", class: "text-sm font-medium" %>
+      <%= f.label :message, t("adoption_request.message_label"), class: "text-sm font-medium" %>
       <%= f.text_area :message, rows: 3, class: "w-full p-2 border rounded-md mt-1" %>
     </div>
 
-    <%= f.submit "Apply to Adopt", class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
+    <%= f.submit t("adoption_request.apply"),
+          class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
   <% end %>
 <% end %>
