@@ -1,17 +1,19 @@
 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 24px;">
-  <h1 style="color: #38a169;">🎉 Good News!</h1>
+  <h1 style="color: #38a169; font-size: 24px;">
+    🎉 <%= t("mailer.approved.title") %>
+  </h1>
 
   <p style="font-size: 16px; color: #333;">
-    Your adoption request for <strong><%= @pet.name %></strong> has been approved by the rescuer!
+    <%= t("mailer.approved.body_html", pet_name: @pet.name).html_safe %>
   </p>
 
   <p style="font-size: 16px; color: #333;">
-    Be sure to check your dashboard for the next steps and get in touch to schedule a visit or finalize the adoption.
+    <%= t("mailer.approved.instructions") %>
   </p>
 
   <hr style="margin: 24px 0; border: none; border-top: 1px solid #ccc;" />
 
   <p style="font-size: 14px; color: #888;">
-    — The StrayPawBridge Team
+    — <%= t("mailer.signature") %>
   </p>
 </div>

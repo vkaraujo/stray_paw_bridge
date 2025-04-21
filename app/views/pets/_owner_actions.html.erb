@@ -1,4 +1,8 @@
 <div class="flex space-x-4 mt-6">
-  <%= link_to "Edit", edit_pet_path(pet), class: "text-blue-600 hover:underline" %>
-  <%= button_to "Delete", pet_path(pet), method: :delete, data: { confirm: "Are you sure?" }, class: "text-red-600 hover:underline bg-transparent border-none p-0" %>
+  <%= link_to t("pets.owner_actions.edit"), edit_pet_path(pet), class: "text-blue-600 hover:underline font-medium" %>
+
+  <%= button_to t("pets.owner_actions.delete"), pet_path(pet),
+        method: :delete,
+        data: { confirm: t("pets.owner_actions.confirm") },
+        class: "text-red-600 hover:underline font-medium bg-transparent border-none p-0" %>
 </div>

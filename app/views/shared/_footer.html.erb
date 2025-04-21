@@ -1,0 +1,18 @@
+<footer class="bg-[#DDEEDF] border-t mt-12 text-center text-sm text-[#2C4731] py-8">
+  <p>© 2025 StrayPawBridge · <%= t("footer.rights") %></p>
+
+  <nav class="mt-4 space-x-4 text-gray-500">
+    <%= link_to t("footer.about"), "#", class: "hover:text-gray-800 transition" %>
+    <%= link_to t("footer.contact"), "#", class: "hover:text-gray-800 transition" %>
+    <%= link_to t("footer.privacy"), "#", class: "hover:text-gray-800 transition" %>
+  </nav>
+
+  <div class="mt-4 flex justify-center gap-4 text-gray-500">
+    <%= link_to "https://github.com/vkaraujo", target: "_blank", rel: "noopener", class: "hover:text-gray-800 transition" do %>
+      <i class="fab fa-github fa-lg"></i>
+    <% end %>
+    <%= link_to "https://linkedin.com/in/vkaraujo", target: "_blank", rel: "noopener", class: "hover:text-gray-800 transition" do %>
+      <i class="fab fa-linkedin fa-lg"></i>
+    <% end %>
+  </div>
+</footer>

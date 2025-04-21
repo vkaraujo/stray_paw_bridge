@@ -1,5 +1,5 @@
 <div>
-  <h2 class="text-xl font-semibold mb-4">My Pets</h2>
+  <h2 class="text-xl font-semibold mb-4"><%= t("dashboard.my_pets.title") %></h2>
 
   <% if pets.any? %>
     <div class="grid gap-4">
@@ -7,21 +7,21 @@
         <div class="border rounded p-4 bg-gray-50 shadow-sm">
           <h3 class="text-lg font-bold"><%= pet.name %></h3>
           <p class="text-sm text-gray-600 mb-2">
-            <%= pet.species.titleize %> — <%= pet.size %> — <%= pet.status.titleize %>
+            <%= "#{pet.species.titleize} — #{pet.size} — #{pet.status.titleize}" %>
           </p>
 
           <div class="flex gap-3">
-            <%= link_to "View", pet_path(pet), class: "text-blue-600 hover:underline" %>
-            <%= link_to "Edit", edit_pet_path(pet), class: "text-yellow-600 hover:underline" %>
+            <%= link_to t("dashboard.my_pets.view"), pet_path(pet), class: "text-blue-600 hover:underline" %>
+            <%= link_to t("dashboard.my_pets.edit"), edit_pet_path(pet), class: "text-yellow-600 hover:underline" %>
           </div>
         </div>
       <% end %>
     </div>
   <% else %>
-    <p class="text-gray-500">You haven't listed any pets yet.</p>
+    <p class="text-gray-500"><%= t("dashboard.my_pets.none") %></p>
   <% end %>
 
   <div class="mt-4">
-    <%= link_to "Add New Pet", new_pet_path, class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
+    <%= link_to t("dashboard.my_pets.add"), new_pet_path, class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
   </div>
 </div>

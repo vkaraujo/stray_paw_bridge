@@ -1,45 +1,51 @@
-<header class="bg-white shadow mb-6">
-  <div class="container mx-auto px-4 py-4 flex items-center justify-between">
-    <!-- Left: Logo -->
-    <h1 class="text-xl font-bold">
+<header class="bg-gradient-to-r from-[#DDEEDF] to-[#cce8e0] shadow-sm mb-6 font-sans">
+  <div class="container mx-auto px-4 py-4 flex flex-wrap items-center justify-between">
+    <!-- Logo -->
+    <h1 class="text-2xl font-bold text-gray-800">
       <%= link_to "StrayPawBridge", root_path, class: "hover:underline" %>
     </h1>
 
-    <!-- Middle: Nav links -->
-    <nav class="space-x-4 flex items-center">
-      <%= link_to "Adopt", pets_path, class: "text-blue-600 hover:underline" %>
+    <!-- Navigation -->
+    <nav class="flex flex-wrap gap-6 items-center text-base">
+      <%= link_to t("navbar.adopt"), pets_path,
+          class: "px-4 py-2 text-gray-700 font-semibold hover:bg-white hover:shadow rounded transition" %>
 
       <% if user_signed_in? && current_user.admin? %>
-        <%= link_to "Admin", admin_dashboard_path, class: "text-sm text-red-600 hover:underline" %>
+        <%= link_to t("navbar.admin"), admin_dashboard_path,
+            class: "px-4 py-2 text-red-600 font-semibold hover:bg-white hover:shadow rounded transition" %>
       <% end %>
 
       <% if user_signed_in? %>
         <% unread_count = current_user.notifications.unread.count %>
-        <%= link_to dashboard_path, class: "relative inline-block" do %>
-          <span class="text-sm text-blue-600 hover:underline">Dashboard</span>
-
+        <%= link_to dashboard_path,
+            class: "relative px-4 py-2 text-gray-700 font-semibold hover:bg-white hover:shadow rounded transition inline-block" do %>
+          <span><%= t("navbar.dashboard") %></span>
           <% if unread_count > 0 %>
             <span class="absolute -top-1 -right-2 text-xs bg-red-600 text-white rounded-full px-1">
               <%= unread_count %>
             </span>
           <% end %>
         <% end %>
-      <% end %>
 
-      <% if user_signed_in? %>
-        <span class="text-sm">Welcome, <%= current_user.email %>!</span>
-        <%= link_to 'Edit Profile', edit_user_registration_path, class: "text-blue-600 hover:underline" %>
-        <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "text-red-600 hover:underline" %>
+        <% user_prefix = current_user.email.split("@").first.capitalize %>
+        <%= link_to "#{t('navbar.edit_profile')} (#{user_prefix})", edit_user_registration_path,
+            class: "px-4 py-2 text-gray-700 font-semibold hover:bg-white hover:shadow rounded transition" %>
+
+        <%= link_to t("navbar.logout"), destroy_user_session_path, method: :delete,
+            class: "px-4 py-2 text-red-600 font-semibold hover:bg-white hover:shadow rounded transition" %>
       <% else %>
-        <%= link_to 'Sign up', new_user_registration_path, class: "text-blue-600 hover:underline" %>
-        <%= link_to 'Log in', new_user_session_path, class: "text-blue-600 hover:underline" %>
+        <%= link_to t("navbar.signup"), new_user_registration_path,
+            class: "px-4 py-2 text-gray-700 font-semibold hover:bg-white hover:shadow rounded transition" %>
+
+        <%= link_to t("navbar.login"), new_user_session_path,
+            class: "px-4 py-2 text-gray-700 font-semibold hover:bg-white hover:shadow rounded transition" %>
       <% end %>
     </nav>
 
-    <!-- Right: Language Switcher -->
-    <div>
+    <!-- Language Switcher -->
+    <div class="mt-2 sm:mt-0">
       <%= form_with url: request.path, method: :get, local: true do %>
-        <select name="locale" onchange="this.form.submit()" class="p-2 border rounded text-sm">
+        <select name="locale" onchange="this.form.submit()" class="p-2 border rounded text-base bg-white">
           <option value="pt-BR" <%= 'selected' if I18n.locale.to_s == 'pt-BR' %>>🇧🇷 PT</option>
           <option value="en" <%= 'selected' if I18n.locale == :en %>>🇺🇸 EN</option>
         </select>
