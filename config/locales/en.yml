@@ -3,3 +3,26 @@ en:
   devise:
     sessions:
       signed_in: "Signed in successfully."
+  home:
+    title: "Welcome to StrayPawBridge 🐾"
+    subtitle: "A kind space where rescued pets find loving homes. List your rescued buddy or adopt your next best friend — all in one place."
+    cta:
+      browse: "Browse Pets"
+      list_pet: "List a Pet"
+      sign_up: "Sign Up to List"
+    footer: "Created with 💚 by people who care about pets."
+  footer:
+    rights: "All rights reserved"
+    about: "About"
+    contact: "Contact"
+    privacy: "Privacy"
+  navbar:
+    adopt: "Adopt"
+    admin: "Admin"
+    dashboard: "Dashboard"
+    welcome: "Welcome"
+    edit_profile: "Edit Profile"
+    logout: "Log out"
+    signup: "Sign up"
+    login: "Log in"
+

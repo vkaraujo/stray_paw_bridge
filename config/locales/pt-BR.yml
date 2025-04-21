@@ -145,3 +145,25 @@ pt-BR:
       not_saved:
         one: 'Não foi possível salvar %{resource}: 1 erro'
         other: 'Não foi possível salvar %{resource}: %{count} erros.'
+  home:
+    title: "Bem-vindo ao StrayPawBridge 🐾"
+    subtitle: "Um espaço gentil onde pets resgatados encontram lares amorosos. Cadastre seu resgate ou adote um novo amigo — tudo em um só lugar."
+    cta:
+      browse: "Ver pets"
+      list_pet: "Cadastrar um Pet"
+      sign_up: "Cadastre-se para Anunciar"
+    footer: "Feito com 💚 por quem se importa com os animais."
+  footer:
+    rights: "Todos os direitos reservados"
+    about: "Sobre"
+    contact: "Contato"
+    privacy: "Privacidade"
+  navbar:
+    adopt: "Adotar"
+    admin: "Admin"
+    dashboard: "Painel"
+    welcome: "Bem-vindo"
+    edit_profile: "Editar Perfil"
+    logout: "Sair"
+    signup: "Cadastrar"
+    login: "Entrar"
