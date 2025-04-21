@@ -15,11 +15,15 @@
     </div>
 
     <div class="flex flex-col">
-      <%= label_tag :location, "Location", class: "text-sm font-medium text-gray-700" %>
-      <%= text_field_tag :location, "", placeholder: "Coming soon...", disabled: true,
-                         class: "p-2 border rounded-md bg-gray-100 text-gray-400" %>
+      <%= label_tag :location, "Near Location", class: "text-sm font-medium text-gray-700" %>
+      <%= text_field_tag :location, params[:location], placeholder: "e.g. São Paulo, Brazil", class: "p-2 border rounded-md" %>
     </div>
 
+    <div class="flex flex-col">
+      <%= label_tag :radius, "Radius (km)", class: "text-sm font-medium text-gray-700" %>
+      <%= number_field_tag :radius, params[:radius] || 20, class: "p-2 border rounded-md", min: 1 %>
+    </div>
+    
     <div>
       <%= submit_tag "Filter", class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
     </div>
