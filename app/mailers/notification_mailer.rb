@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class NotificationMailer < ApplicationMailer
-  self.queue_name = :mailers
-
   def adoption_approved(user, pet)
     @user = user
     @pet = pet

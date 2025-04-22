@@ -21,12 +21,13 @@ class AdoptionRequestsController < ApplicationController
   end
 
   def approve
-    authorize_owner!
+    unless authorize_owner!
+      redirect_to root_path, alert: "Not authorized." and return
+    end
+  
     if @request.update(status: :approved)
       Notification.create!(user: @request.user, message: "Your adoption request for #{@request.pet.name} was approved.")
-
       NotificationMailer.adoption_approved(@request.user, @request.pet).deliver_later
-
       redirect_to pet_path(@request.pet), notice: "Request approved."
     else
       redirect_to pet_path(@request.pet), alert: "Could not approve request."
@@ -46,8 +47,12 @@ class AdoptionRequestsController < ApplicationController
     end
   end
 
+  
   def cancel
-    authorize_adopter!
+    unless authorize_adopter!
+      redirect_to root_path, alert: "Not authorized." and return
+    end
+
     if @request.update(status: :cancelled)
       redirect_to pet_path(@request.pet), notice: "Request cancelled."
     else
@@ -58,11 +63,11 @@ class AdoptionRequestsController < ApplicationController
   private
 
   def authorize_owner!
-    redirect_to root_path, alert: "Not authorized." unless @request.pet.user == current_user || current_user.admin?
+    @request.pet.user == current_user || current_user.admin?
   end
 
   def authorize_adopter!
-    redirect_to root_path, alert: "Not authorized." unless @request.user == current_user
+    @request.user == current_user
   end
 
   def set_request
