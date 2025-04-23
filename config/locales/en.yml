@@ -119,6 +119,10 @@ en:
       title: "Notifications"
       mark_as_read: "Mark as Read"
       none: "You don’t have any notifications yet."
+    tabs:
+      pets: "My Pets"
+      adoptions: "My Adoptions"
+      notifications: "Notifications"
   admin:
     dashboard:
       title: "Admin Panel"

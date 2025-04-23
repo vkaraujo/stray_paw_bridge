@@ -261,6 +261,10 @@ pt-BR:
       title: "Notificações"
       mark_as_read: "Marcar como lida"
       none: "Você ainda não tem notificações."
+    tabs:
+      pets: "Meus Pets"
+      adoptions: "Minhas adoções"
+      notifications: "Notificações"
   admin:
     dashboard:
       title: "Painel Administrativo"
