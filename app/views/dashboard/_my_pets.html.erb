@@ -13,6 +13,14 @@
           <div class="flex gap-3">
             <%= link_to t("dashboard.my_pets.view"), pet_path(pet), class: "text-blue-600 hover:underline" %>
             <%= link_to t("dashboard.my_pets.edit"), edit_pet_path(pet), class: "text-yellow-600 hover:underline" %>
+
+            <% if pet.available? || pet.pending? %>
+              <%= button_to t("pets.conclude_adoption.button"),
+                            conclude_adoption_pet_path(pet),
+                            method: :patch,
+                            data: { turbo_confirm: t("pets.conclude_adoption.confirm") },
+                            class: "text-green-600 hover:underline" %>
+            <% end %>
           </div>
         </div>
       <% end %>

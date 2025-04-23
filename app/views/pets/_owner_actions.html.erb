@@ -5,4 +5,12 @@
         method: :delete,
         data: { confirm: t("pets.owner_actions.confirm") },
         class: "text-red-600 hover:underline font-medium bg-transparent border-none p-0" %>
+
+  <% if pet.available? || pet.pending? %>
+    <%= button_to t("pets.conclude_adoption.button"),
+                  conclude_adoption_pet_path(pet),
+                  method: :patch,
+                  data: { turbo_confirm: t("pets.conclude_adoption.confirm") },
+                  class: "text-green-600 hover:underline text-sm" %>
+  <% end %>
 </div>

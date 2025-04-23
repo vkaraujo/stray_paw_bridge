@@ -26,6 +26,7 @@ class AdoptionRequestsController < ApplicationController
     end
 
     if @request.update(status: :approved)
+      @request.pet.update(status: :pending)
       Notification.create!(user: @request.user, message: "Your adoption request for #{@request.pet.name} was approved.")
       NotificationMailer.adoption_approved(@request.user, @request.pet).deliver_later
       redirect_to pet_path(@request.pet), notice: "Request approved."

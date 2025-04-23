@@ -75,6 +75,9 @@ en:
       edit: "Edit"
       delete: "Delete"
       confirm: "Are you sure you want to delete this pet?"
+    conclude_adoption:
+      button: "Conclude Adoption"
+      confirm: "Are you sure you want to mark this pet as adopted?"
   adoption_request:
     pending: "You have a pending adoption request."
     approved: "Your adoption request was approved! 🎉"
@@ -135,6 +138,8 @@ en:
       visible: "Visible"
       hidden: "Hidden"
       toggle_visibility: "Toggle Visibility"
+      conclude_adoption: "Conclude Adoption"
+      confirm_conclude_adoption: "Are you sure you want to mark this pet as adopted?"
     users:
       title: "User Management"
       id: "ID"
