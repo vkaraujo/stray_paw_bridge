@@ -4,5 +4,5 @@ test:
   database: stray_paw_bridge_test
   pool: 5
   username: postgres
-  password:
+  password: postgres
   host: localhost

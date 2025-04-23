@@ -16,7 +16,7 @@ jobs:
         ports: ["5432:5432"]
         env:
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD:
+          POSTGRES_PASSWORD: postgres
           POSTGRES_DB: stray_paw_bridge_test
         options: >-
           --health-cmd pg_isready
@@ -43,7 +43,7 @@ jobs:
         run: |
           bundle exec rspec
           cat coverage/.last_run.json | jq '.result.covered_percent'
-          
+
       - name: Run tests
         run: bundle exec rspec
 
