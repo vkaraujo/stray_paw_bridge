@@ -4,6 +4,8 @@ require 'rails_helper'
 
 RSpec.describe "Dashboard", type: :request do
   let(:user) { create(:user) }
+  let!(:pet1) { create(:pet, user: user, name: "Tango") }
+  let!(:pet2) { create(:pet, user: user, name: "Whiskers") }
 
   describe "GET /dashboard" do
     before do
@@ -19,8 +21,8 @@ RSpec.describe "Dashboard", type: :request do
     end
 
     it "displays user's pets" do
-      expect(response.body).to include(Pet.first.name)
-      expect(response.body).to include(Pet.last.name)
+      expect(response.body).to include("Tango")
+      expect(response.body).to include("Whiskers")
     end
 
     it "displays user's adoption requests" do
