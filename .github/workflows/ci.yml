@@ -37,7 +37,7 @@ jobs:
         run: cp config/database.yml.ci config/database.yml
 
       - name: Setup database
-        run: bin/rails db:prepare
+        run: RAILS_ENV=test bin/rails db:prepare
 
       - name: Print SimpleCov Coverage Summary
         run: |
