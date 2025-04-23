@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe AdoptionRequestsController, type: :controller do
-  include Devise::Test::ControllerHelpers
+RSpec.describe "AdoptionRequests", type: :request do
   include ActiveJob::TestHelper
 
   let(:rescuer) { create(:user) }
@@ -9,55 +10,55 @@ RSpec.describe AdoptionRequestsController, type: :controller do
   let(:admin)   { create(:user, role: :admin) }
   let(:pet)     { create(:pet, user: rescuer) }
 
-  describe "POST #create" do
+  describe "POST /adoption_requests" do
     before { sign_in adopter }
 
     it "creates a new adoption request" do
       expect {
-        post :create, params: { adoption_request: { pet_id: pet.id, message: "Please let me adopt!" } }
+        post adoption_requests_path, params: { adoption_request: { pet_id: pet.id, message: "Please let me adopt!" } }
       }.to change(AdoptionRequest, :count).by(1)
 
-      expect(response).to redirect_to(pet_path(pet))
+      expect_redirect_to_path(pet_path(pet))
     end
   end
 
-  describe "PATCH #approve" do
+  describe "PATCH /adoption_requests/:id/approve" do
     let!(:request_record) { create(:adoption_request, user: adopter, pet: pet) }
 
     before { sign_in rescuer }
 
     it "approves the request" do
       perform_enqueued_jobs do
-        patch :approve, params: { id: request_record.id }
-        expect(response).to redirect_to(pet_path(pet))
-        expect(AdoptionRequest.find(request_record.id).status).to eq("approved")
+        patch approve_adoption_request_path(request_record)
+        expect_redirect_to_path(pet_path(pet))
+        expect(request_record.reload.status).to eq("approved")
       end
     end
   end
 
-  describe "PATCH #reject" do
+  describe "PATCH /adoption_requests/:id/reject" do
     let!(:request_record) { create(:adoption_request, user: adopter, pet: pet) }
 
     before { sign_in admin }
 
     it "rejects the request" do
       perform_enqueued_jobs do
-        patch :reject, params: { id: request_record.id }
-        expect(AdoptionRequest.find(request_record.id).status).to eq("rejected")
-        expect(response).to redirect_to(pet_path(pet))
+        patch reject_adoption_request_path(request_record)
+        expect_redirect_to_path(pet_path(pet))
+        expect(request_record.reload.status).to eq("rejected")
       end
     end
   end
 
-  describe "PATCH #cancel" do
+  describe "PATCH /adoption_requests/:id/cancel" do
     let!(:request_record) { create(:adoption_request, user: adopter, pet: pet) }
 
     before { sign_in adopter }
 
     it "cancels the request" do
-      patch :cancel, params: { id: request_record.id }
-      expect(response).to redirect_to(pet_path(pet))
-      expect(AdoptionRequest.find(request_record.id).status).to eq("cancelled")
+      patch cancel_adoption_request_path(request_record)
+      expect_redirect_to_path(pet_path(pet))
+      expect(request_record.reload.status).to eq("cancelled")
     end
   end
 
@@ -66,14 +67,14 @@ RSpec.describe AdoptionRequestsController, type: :controller do
 
     it "prevents unauthorized user from approving" do
       sign_in adopter
-      patch :approve, params: { id: request_record.id }
-      expect(response).to redirect_to(root_path)
+      patch approve_adoption_request_path(request_record)
+      expect_redirect_to_path(root_path)
     end
 
     it "prevents unauthorized user from cancelling other's request" do
       sign_in rescuer
-      patch :cancel, params: { id: request_record.id }
-      expect(response).to redirect_to(root_path)
+      patch cancel_adoption_request_path(request_record)
+      expect_redirect_to_path(root_path)
     end
   end
 end
