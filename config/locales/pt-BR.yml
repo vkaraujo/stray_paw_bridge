@@ -261,6 +261,7 @@ pt-BR:
       title: "Notificações"
       mark_as_read: "Marcar como lida"
       none: "Você ainda não tem notificações."
+      open_chat: "Abrir Chat"
     tabs:
       pets: "Meus Pets"
       adoptions: "Minhas adoções"
@@ -303,6 +304,10 @@ pt-BR:
         active: "Ativos"
         inactive: "Inativos"
         submit: "Filtrar"
+  messages:
+    title: "Chat"
+    placeholder: "Escreva sua mensagem..."
+    send: "Enviar"
 
 
 

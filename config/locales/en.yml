@@ -119,6 +119,7 @@ en:
       title: "Notifications"
       mark_as_read: "Mark as Read"
       none: "You don’t have any notifications yet."
+      open_chat: "Open Chat"
     tabs:
       pets: "My Pets"
       adoptions: "My Adoptions"
@@ -161,6 +162,10 @@ en:
         active: "Active"
         inactive: "Inactive"
         submit: "Filter"
+  messages:
+    title: "Chat"
+    placeholder: "Type your message..."
+    send: "Send"
 
 
 
