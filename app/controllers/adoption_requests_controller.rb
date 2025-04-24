@@ -10,7 +10,8 @@ class AdoptionRequestsController < ApplicationController
     if @request.save
       Notification.create!(
         user: @request.pet.user,
-        message: "#{current_user.email} has submitted an adoption request for #{@request.pet.name}."
+        message: "#{current_user.email} has submitted an adoption request for #{@request.pet.name}.",
+        adoption_request: @request
       )
 
       redirect_to pet_path(@request.pet), notice: "Adoption request sent!"
