@@ -36,6 +36,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :adoption_requests, only: [] do
+    resources :messages, only: [:index, :create]
+  end
+
   resources :pets, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
   resources :pets do

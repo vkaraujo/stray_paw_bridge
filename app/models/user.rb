@@ -7,14 +7,19 @@ class User < ApplicationRecord
   has_many :adoption_requests, dependent: :destroy
   has_many :pets, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  has_many :messages
 
   scope :active, -> { where(active: true) }
 
   def active_for_authentication?
     super && active?
   end
-  
+
   def inactive_message
     active? ? super : :inactive
+  end
+
+  def name
+    email.split('@').first
   end
 end
