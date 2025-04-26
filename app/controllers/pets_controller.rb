@@ -2,7 +2,7 @@
 
 class PetsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_pet, only: [:show, :edit, :update, :destroy]
+  before_action :set_pet, only: [:show, :edit, :update, :destroy, :conclude_adoption]
   before_action :authorize_pet!, only: [:edit, :update, :destroy]
 
   def index
@@ -49,6 +49,15 @@ class PetsController < ApplicationController
   def destroy
     @pet.destroy
     redirect_to pets_path, notice: "Pet removed."
+  end
+
+  def conclude_adoption
+    if @pet.user == current_user && @pet.status != "adopted"
+      @pet.update(status: :adopted)
+      redirect_to dashboard_path, notice: "Adoption concluded!"
+    else
+      redirect_to pet_path(@pet), alert: "You can't conclude this adoption."
+    end
   end
 
   private

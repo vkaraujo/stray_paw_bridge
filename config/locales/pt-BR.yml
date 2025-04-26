@@ -217,6 +217,9 @@ pt-BR:
       edit: "Editar"
       delete: "Excluir"
       confirm: "Tem certeza que deseja excluir este pet?"
+    conclude_adoption:
+      button: "Concluir Adoção"
+      confirm: "Tem certeza de que deseja marcar este pet como adotado?"
   adoption_request:
     pending: "Você tem um pedido de adoção pendente."
     approved: "Seu pedido de adoção foi aprovado! 🎉"
@@ -258,6 +261,11 @@ pt-BR:
       title: "Notificações"
       mark_as_read: "Marcar como lida"
       none: "Você ainda não tem notificações."
+      open_chat: "Abrir Chat"
+    tabs:
+      pets: "Meus Pets"
+      adoptions: "Minhas adoções"
+      notifications: "Notificações"
   admin:
     dashboard:
       title: "Painel Administrativo"
@@ -277,6 +285,8 @@ pt-BR:
       visible: "Visível"
       hidden: "Oculto"
       toggle_visibility: "Alternar Visibilidade"
+      conclude_adoption: "Marcar como Adotado"
+      confirm_conclude_adoption: "Tem certeza que deseja marcar este animal como adotado? Essa ação não poderá ser desfeita."
     users:
       title: "Gerenciamento de Usuários"
       id: "ID"
@@ -294,6 +304,10 @@ pt-BR:
         active: "Ativos"
         inactive: "Inativos"
         submit: "Filtrar"
+  messages:
+    title: "Chat"
+    placeholder: "Escreva sua mensagem..."
+    send: "Enviar"
 
 
 

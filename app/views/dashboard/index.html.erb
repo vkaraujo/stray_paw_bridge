@@ -1,9 +1,28 @@
-<div class="max-w-5xl mx-auto py-8 space-y-8">
-  <h1 class="text-3xl font-bold text-gray-800 mb-6">
-    <%= t("dashboard.title") %>
-  </h1>
+<div data-controller="tab">
+  <h1 class="text-3xl font-bold text-gray-800 mb-6"><%= t("dashboard.title") %></h1>
 
-  <%= render "dashboard/my_pets", pets: @my_pets %>
-  <%= render "dashboard/my_adoptions", requests: @my_adoption_requests %>
-  <%= render "dashboard/notifications", notifications: @notifications %>
+  <!-- Tabs -->
+  <div class="flex border-b mb-4">
+    <button data-tab-target="tab" data-action="click->tab#switch" class="px-4 py-2 text-gray-600">My Pets</button>
+    <button data-tab-target="tab" data-action="click->tab#switch" class="px-4 py-2 text-gray-600">My Adoptions</button>
+    <button data-tab-target="tab" data-action="click->tab#switch" class="relative px-4 py-2 text-gray-600">
+      Notifications
+      <% if @unread_count.positive? %>
+        <span class="absolute -top-1 -right-2 bg-red-600 text-white text-xs font-semibold px-2 py-0.5 rounded-full">
+          <%= @unread_count %>
+        </span>
+      <% end %>
+    </button>
+  </div>
+
+  <!-- Content Panels -->
+  <div data-tab-target="content" class="tab-content">
+    <%= render "dashboard/my_pets", pets: @my_pets %>
+  </div>
+  <div data-tab-target="content" class="tab-content hidden">
+    <%= render "dashboard/my_adoptions", requests: @my_adoption_requests %>
+  </div>
+  <div data-tab-target="content" class="tab-content hidden">
+    <%= render "dashboard/notifications", notifications: @notifications %>
+  </div>
 </div>

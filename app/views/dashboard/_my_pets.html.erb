@@ -1,18 +1,38 @@
 <div>
-  <h2 class="text-xl font-semibold mb-4"><%= t("dashboard.my_pets.title") %></h2>
+  <div class="mt-4 mb-4">
+    <%= link_to t("dashboard.my_pets.add"), new_pet_path,
+                class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
+  </div>
 
   <% if pets.any? %>
     <div class="grid gap-4">
       <% pets.each do |pet| %>
         <div class="border rounded p-4 bg-gray-50 shadow-sm">
-          <h3 class="text-lg font-bold"><%= pet.name %></h3>
-          <p class="text-sm text-gray-600 mb-2">
-            <%= "#{pet.species.titleize} — #{pet.size} — #{pet.status.titleize}" %>
+          <h3 class="text-lg font-bold mb-1"><%= pet.name %></h3>
+          
+          <!-- Pet Status Badge -->
+          <p class="text-sm mb-3">
+            <%= status_badge(pet) %>
+            · <%= "#{pet.species.titleize} — #{pet.size}" %>
           </p>
 
-          <div class="flex gap-3">
-            <%= link_to t("dashboard.my_pets.view"), pet_path(pet), class: "text-blue-600 hover:underline" %>
-            <%= link_to t("dashboard.my_pets.edit"), edit_pet_path(pet), class: "text-yellow-600 hover:underline" %>
+          <!-- Actions -->
+          <div class="flex flex-wrap gap-2 text-sm">
+            <%= link_to t("dashboard.my_pets.view"),
+                        pet_path(pet),
+                        class: "inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded hover:bg-blue-200" %>
+
+            <%= link_to t("dashboard.my_pets.edit"),
+                        edit_pet_path(pet),
+                        class: "inline-block px-3 py-1 bg-yellow-100 text-yellow-800 rounded hover:bg-yellow-200" %>
+
+            <% if pet.available? || pet.pending? %>
+              <%= button_to t("pets.conclude_adoption.button"),
+                            conclude_adoption_pet_path(pet),
+                            method: :patch,
+                            data: { turbo_confirm: t("pets.conclude_adoption.confirm") },
+                            class: "inline-block px-3 py-1 bg-green-100 text-green-800 rounded hover:bg-green-200" %>
+            <% end %>
           </div>
         </div>
       <% end %>
@@ -20,8 +40,4 @@
   <% else %>
     <p class="text-gray-500"><%= t("dashboard.my_pets.none") %></p>
   <% end %>
-
-  <div class="mt-4">
-    <%= link_to t("dashboard.my_pets.add"), new_pet_path, class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
-  </div>
 </div>

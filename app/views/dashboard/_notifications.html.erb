@@ -1,21 +1,44 @@
 <div>
-  <h2 class="text-xl font-semibold mb-4"><%= t("dashboard.notifications.title") %></h2>
-
   <% if notifications.any? %>
-    <ul class="space-y-2">
+    <ul class="space-y-4">
       <% notifications.each do |note| %>
-        <li class="p-3 <%= note.read? ? 'bg-gray-100' : 'bg-yellow-50' %> border rounded flex justify-between items-center">
-          <p class="text-sm text-gray-800"><%= note.message %></p>
+        <li class="flex items-start gap-4 border rounded-lg p-4 shadow-sm hover:shadow-md transition bg-white">
+          <!-- Icon -->
+          <div class="text-yellow-500 text-lg pt-1 shrink-0">
+            <% if note.read? %>
+              <i class="fas fa-bell-slash"></i>
+            <% else %>
+              <i class="fas fa-bell animate-pulse"></i>
+            <% end %>
+          </div>
 
-          <% unless note.read? %>
-            <%= button_to t("dashboard.notifications.mark_as_read"), mark_as_read_notification_path(note),
-                  method: :patch,
-                  class: "text-xs text-blue-600 hover:underline ml-4" %>
-          <% end %>
+          <!-- Content -->
+          <div class="flex-1">
+            <p class="text-sm text-gray-800 leading-relaxed">
+              <%= highlight(note.message, Pet.pluck(:name), highlighter: '<strong class="font-semibold text-gray-900">\1</strong>') %>
+            </p>
+
+            <div class="mt-3 flex flex-wrap gap-2">
+              <% if note.adoption_request.present? %>
+                <%= link_to adoption_request_messages_path(note.adoption_request),
+                            class: "inline-flex items-center gap-1 bg-indigo-600 text-white text-xs font-semibold px-3 py-1 rounded hover:bg-indigo-700 transition" do %>
+                  <i class="fas fa-comments"></i> <%= t("dashboard.notifications.open_chat") %>
+                <% end %>
+              <% end %>
+
+              <% unless note.read? %>
+                <%= button_to mark_as_read_notification_path(note),
+                    method: :patch,
+                    class: "inline-flex items-center gap-1 bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded hover:bg-blue-700 transition" do %>
+                  <i class="fas fa-check"></i> <%= t("dashboard.notifications.mark_as_read") %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
         </li>
       <% end %>
     </ul>
   <% else %>
-    <p class="text-gray-500"><%= t("dashboard.notifications.none") %></p>
+    <p class="text-gray-500 text-sm italic"><%= t("dashboard.notifications.none") %></p>
   <% end %>
 </div>

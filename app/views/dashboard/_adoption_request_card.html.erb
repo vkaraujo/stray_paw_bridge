@@ -1,0 +1,24 @@
+<li class="border rounded p-4 <%= request.pending? ? 'bg-white' : 'bg-gray-50' %> shadow-sm">
+  <div class="flex justify-between items-center">
+    <div>
+      <h4 class="font-bold">
+        <%= link_to request.pet.name, pet_path(request.pet), class: "text-blue-600 hover:underline" %>
+      </h4>
+
+      <!-- Status Badge -->
+      <span class="inline-block px-2 py-1 mt-1 text-xs font-semibold rounded-full <%= status_badge_classes(request.status) %>">
+        <%= t("dashboard.my_adoptions.statuses.#{request.status}") %>
+      </span>
+
+      <% if request.message.present? %>
+        <p class="text-gray-500 text-sm mt-1 italic">"<%= request.message %>"</p>
+      <% end %>
+    </div>
+
+    <% if show_controls && request.pending? %>
+      <div class="flex gap-3 items-center">
+        <%= chat_and_cancel_buttons(request) %>
+      </div>
+    <% end %>
+  </div>
+</li>

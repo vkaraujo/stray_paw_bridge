@@ -10,7 +10,8 @@ class AdoptionRequestsController < ApplicationController
     if @request.save
       Notification.create!(
         user: @request.pet.user,
-        message: "#{current_user.email} has submitted an adoption request for #{@request.pet.name}."
+        message: "#{current_user.email} has submitted an adoption request for #{@request.pet.name}.",
+        adoption_request: @request
       )
 
       redirect_to pet_path(@request.pet), notice: "Adoption request sent!"
@@ -26,6 +27,7 @@ class AdoptionRequestsController < ApplicationController
     end
 
     if @request.update(status: :approved)
+      @request.pet.update(status: :pending)
       Notification.create!(user: @request.user, message: "Your adoption request for #{@request.pet.name} was approved.")
       NotificationMailer.adoption_approved(@request.user, @request.pet).deliver_later
       redirect_to pet_path(@request.pet), notice: "Request approved."

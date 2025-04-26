@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_04_20_235635) do
+ActiveRecord::Schema[7.1].define(version: 2025_04_24_004318) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,12 +53,24 @@ ActiveRecord::Schema[7.1].define(version: 2025_04_20_235635) do
     t.index ["user_id"], name: "index_adoption_requests_on_user_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.bigint "adoption_request_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["adoption_request_id"], name: "index_messages_on_adoption_request_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "message"
     t.boolean "read", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "adoption_request_id"
+    t.index ["adoption_request_id"], name: "index_notifications_on_adoption_request_id"
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
@@ -98,6 +110,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_04_20_235635) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "adoption_requests", "pets"
   add_foreign_key "adoption_requests", "users"
+  add_foreign_key "messages", "adoption_requests"
+  add_foreign_key "messages", "users"
+  add_foreign_key "notifications", "adoption_requests"
   add_foreign_key "notifications", "users"
   add_foreign_key "pets", "users"
 end
