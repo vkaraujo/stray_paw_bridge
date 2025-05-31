@@ -1,3 +1,8 @@
+---
+title: Contributing
+layout: default
+---
+
 # 🤝 Contributing to StrayPawBridge
 
 Thank you for considering a contribution to **StrayPawBridge** — a Ruby on Rails platform for connecting pet rescuers and adopters.
