@@ -4,6 +4,14 @@ StrayPawBridge is a pet adoption platform designed to connect rescuers and adopt
 
 ---
 
+## 📚 Documentation
+
+You can explore the full project documentation—including architecture, features, glossary, and contribution guidelines—at:
+
+👉 [https://vkaraujo.github.io/stray_paw_bridge](https://vkaraujo.github.io/stray_paw_bridge)
+
+---
+
 ## ✨ Features
 
 - 📋 List pets with photos, descriptions, location, and status (Available, Pending, Adopted)
@@ -17,12 +25,7 @@ StrayPawBridge is a pet adoption platform designed to connect rescuers and adopt
 
 ## 🛠 Technologies
 
-- **Backend:** Ruby on Rails 7.1, PostgreSQL
-- **Frontend:** Hotwire (Turbo + Stimulus), Tailwind CSS
-- **Authentication:** Devise
-- **Authorization:** Pundit
-- **Testing:** RSpec, FactoryBot, SimpleCov
-- **CI/CD:** GitHub Actions
+Ruby on Rails 7.1, PostgreSQL, Hotwire (Turbo + Stimulus), Tailwind CSS, Devise, Pundit, RSpec, FactoryBot, SimpleCov, GitHub Actions
 
 ---
 
@@ -48,16 +51,6 @@ yarn install
 bin/setup
 bin/dev
 ```
-
----
-
-## 📁 Folder Structure
-
-- `app/models` – domain models (User, Pet, AdoptionRequest, etc.)
-- `app/controllers` – RESTful controllers (including Admin namespace)
-- `spec/requests` – end-to-end request specs
-- `app/views` – styled with TailwindCSS and Turbo
-- `config/locales` – i18n translations
 
 ---
 
